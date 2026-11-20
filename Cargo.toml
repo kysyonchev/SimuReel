@@ -1,0 +1,28 @@
+[package]
+name = "SimuReel"
+version = "0.1.1"
+edition = "2021"
+
+[package.metadata.bundle]
+name = "SimuReel"
+identifier = "com.yanko.filmlab"
+icon = ["assets/icon.icns"]
+version = "0.1.1"
+resources = []
+
+[dependencies]
+eframe = "0.29"
+rfd = "0.15"
+rayon = "1.10"
+imagepipe = "0.5"   # RAW decode + demosaic + colour pipeline (built on rawloader)
+image = { version = "0.25", default-features = false, features = ["jpeg", "png", "tiff"] }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+muda = "0.15"   # native macOS menu bar
+
+[profile.dev]
+opt-level = 2
+
+[profile.release]
+opt-level = 3
+lto = "thin"
